@@ -65,7 +65,15 @@ const tictactoe = (() => {
     while (winner == null) {
         Draw();
         winner = checkWin();
+        if (winner === "draw") {
+            console.log("it's a draw!")
+        } else if (winner) {
+            console.log(`Player ${winner} wins!`)
+        }
+
     }
+
+
 
 })();
 
