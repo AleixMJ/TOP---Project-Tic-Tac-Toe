@@ -29,12 +29,7 @@ const tictactoe = (() => {
         let positionY = prompt("Choose Y position for drawing:");
         Gameboard[positionX][positionY] = playerTurn;
         console.log(Gameboard);
-        if (playerTurn == player1) {
-            playerTurn = player2;
-        } else {
-            playerTurn = player1;
-        }
-
+        playerTurn = playerTurn === player1 ? player2 : player1;
     }
 
     while (winner == null) {
