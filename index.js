@@ -1,4 +1,6 @@
 
+const prompt = require('prompt-sync')();
+
 /* BRAINSTORMING
 
 Game logic:
@@ -15,6 +17,30 @@ Game logic:
 const tictactoe = (() => {
 
     const Gameboard = Array(3).fill().map(() => Array(3).fill(null));
-    
+    console.log(Gameboard);
+
+    const player1 = "X";
+    const player2 = "O";
+    const winner = null;
+    let playerTurn = player1;
+
+    const Draw = () => {
+        let positionX = prompt("Choose X position for drawing:");
+        let positionY = prompt("Choose Y position for drawing:");
+        Gameboard[positionX][positionY] = playerTurn;
+        console.log(Gameboard);
+        if (playerTurn == player1) {
+            playerTurn = player2;
+        } else {
+            playerTurn = player1;
+        }
+
+    }
+
+    while (winner == null) {
+        Draw();
+    }
 
 })();
+
+tictactoe;
