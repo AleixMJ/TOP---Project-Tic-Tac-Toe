@@ -45,6 +45,12 @@ const tictactoe = (() => {
             return Gameboard[2][0];
          }
 
+         // board full
+         
+         if (Gameboard.every(row => row.every(cell => cell !== null))) {
+            return "draw";
+         } 
+        
         return null;
     }
     
