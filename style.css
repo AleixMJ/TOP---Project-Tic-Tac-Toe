@@ -35,3 +35,13 @@ h1 {
     font-size: 24px;
     font-size: bold;    
 }
+
+#new-game {
+    padding: 5px;
+    border-radius: 4px;
+    color: #0F172A;;
+    background: linear-gradient(#FCD34D, #F59E0B);
+        box-shadow: 
+        inset 0 2px 3px rgba(255, 255, 255, 0.4),   /* soft white highlight on top */
+        inset 0 -2px 3px rgba(0, 0, 0, 0.15); 
+}

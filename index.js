@@ -14,12 +14,14 @@ Game logic:
 const tictactoe = (() => {
 
     const Gameboard = Array(3).fill().map(() => Array(3).fill(null));
-    console.log(Gameboard);
-
+    
     const player1 = "X";
     const player2 = "O";
     let winner = null;
     let playerTurn = player1;
+    const newGame = document.querySelector("#new-game");
+    newGame.addEventListener("click", resetGame);
+
 
     const cells = document.querySelectorAll(".item");
     cells.forEach( cell => {
@@ -75,6 +77,15 @@ const tictactoe = (() => {
         playerTurn = playerTurn === player1 ? player2 : player1;
     }
 
+    function resetGame() {
+        winner = null;
+        playerTurn = player1;
+
+        cells.forEach( cell => {
+            cell.textContent = null;
+            cell.style.color = "black";
+        });
+    }
 
 
 })();
