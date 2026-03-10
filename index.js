@@ -63,7 +63,9 @@ const tictactoe = (() => {
         const positionX = parseInt(e.target.dataset.x);
         const positionY = parseInt(e.target.dataset.y);
         Gameboard[positionX][positionY] = playerTurn;
-        e.target.textContent = playerTurn;
+        e.target.textContent = playerTurn;        
+        e.target.style.color = playerTurn === player1 ? "blue" : "red";       
+
         winner = checkWin();
         if (winner === "draw") {
             console.log("it's a draw!")
