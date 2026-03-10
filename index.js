@@ -1,6 +1,3 @@
-
-const prompt = require('prompt-sync')();
-
 /* BRAINSTORMING
 
 Game logic:
@@ -23,6 +20,12 @@ const tictactoe = (() => {
     const player2 = "O";
     let winner = null;
     let playerTurn = player1;
+
+    const cells = document.querySelectorAll(".item");
+    cells.forEach( cell => {
+        cell.addEventListener("click", Draw);
+
+    });
 
     let checkWin = () => {
 
@@ -54,23 +57,20 @@ const tictactoe = (() => {
         return null;
     }
     
-    const Draw = () => {
-        let positionX = prompt("Choose X position for drawing:");
-        let positionY = prompt("Choose Y position for drawing:");
-        Gameboard[positionX][positionY] = playerTurn;
-        console.log(Gameboard);
-        playerTurn = playerTurn === player1 ? player2 : player1;
-    }
+   function Draw(e) {
 
-    while (winner == null) {
-        Draw();
+        console.log("Draw() starting")
+        const positionX = parseInt(e.target.dataset.x);
+        const positionY = parseInt(e.target.dataset.y);
+        Gameboard[positionX][positionY] = playerTurn;
+        e.target.textContent = playerTurn;
         winner = checkWin();
         if (winner === "draw") {
             console.log("it's a draw!")
         } else if (winner) {
             console.log(`Player ${winner} wins!`)
         }
-
+        playerTurn = playerTurn === player1 ? player2 : player1;
     }
 
 
