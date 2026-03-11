@@ -21,6 +21,8 @@ const tictactoe = (() => {
     let playerTurn = player1;
     const newGame = document.querySelector("#new-game");
     newGame.addEventListener("click", resetGame);
+    const playerMessage = document.querySelector(".current-player");
+    playerMessage.style.color = playerTurn === player1 ? "#2980b9" : "#c0392b";  
 
 
     const cells = document.querySelectorAll(".item");
@@ -76,12 +78,16 @@ const tictactoe = (() => {
         } else if (winner) {
             console.log(`Player ${winner} wins!`)
         }
-        playerTurn = playerTurn === player1 ? player2 : player1;
+        playerTurn = playerTurn === player1 ? player2 : player1;        
+        playerMessage.textContent = `${playerTurn}`;
+        playerMessage.style.color = playerTurn === player1 ? "#2980b9" : "#c0392b";     
     }
 
     function resetGame() {
         winner = null;
         playerTurn = player1;
+        playerMessage.textContent = `${playerTurn}`;
+        playerMessage.style.color = playerTurn === player1 ? "#2980b9" : "#c0392b";  
 
         cells.forEach( cell => {
             cell.textContent = null;
