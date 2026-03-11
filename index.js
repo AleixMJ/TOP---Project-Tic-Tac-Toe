@@ -1,20 +1,7 @@
-/* BRAINSTORMING
-
-Game logic:
-
- start game function (
-        Create a 3x3 Grid as an array
-        Create 2 players
-        Create action to draw on grid
-        Create end game conditions
-)()
-
-*/
-
 const tictactoe = (() => {
 
-    const Gameboard = Array(3).fill().map(() => Array(3).fill(null));
-    
+    // Main varibales
+    const Gameboard = Array(3).fill().map(() => Array(3).fill(null));    
     const player1 = "X";
     const player2 = "O";
     let winner = null;
@@ -22,6 +9,7 @@ const tictactoe = (() => {
     const newGame = document.querySelector("#new-game");
     newGame.addEventListener("click", resetGame);
     const playerMessage = document.querySelector(".current-player");
+    let winnerMessage = document.querySelector(".winner-message");
     playerMessage.style.color = playerTurn === player1 ? "#2980b9" : "#c0392b";  
 
 
@@ -63,6 +51,10 @@ const tictactoe = (() => {
     
    function Draw(e) {
 
+        if (winner !== null) {
+            return;
+    }
+
         const positionX = parseInt(e.target.dataset.x);
         const positionY = parseInt(e.target.dataset.y);
         Gameboard[positionX][positionY] = playerTurn;
@@ -74,25 +66,45 @@ const tictactoe = (() => {
 
         winner = checkWin();
         if (winner === "draw") {
-            console.log("it's a draw!")
+            playerMessage.parentElement.hidden = true;
+            winnerMessage.parentElement.hidden = false;
+            winnerMessage.innerHTML = "It's a Draw!";
+            return;
+            
         } else if (winner) {
-            console.log(`Player ${winner} wins!`)
+            playerMessage.parentElement.hidden = true;
+            winnerMessage.parentElement.hidden = false;
+            winnerMessage.innerHTML = `Player ${winner} wins!`;
+            return;
+            }
+        else {        
+            playerTurn = playerTurn === player1 ? player2 : player1;        
+            playerMessage.textContent = `${playerTurn}`;
+            playerMessage.style.color = playerTurn === player1 ? "#2980b9" : "#c0392b";     
         }
-        playerTurn = playerTurn === player1 ? player2 : player1;        
-        playerMessage.textContent = `${playerTurn}`;
-        playerMessage.style.color = playerTurn === player1 ? "#2980b9" : "#c0392b";     
-    }
+
+    };
 
     function resetGame() {
+        console.log("game reset");
         winner = null;
         playerTurn = player1;
+        playerMessage.parentElement.hidden = false;
+        winnerMessage.parentElement.hidden = true;
         playerMessage.textContent = `${playerTurn}`;
         playerMessage.style.color = playerTurn === player1 ? "#2980b9" : "#c0392b";  
 
         cells.forEach( cell => {
             cell.textContent = null;
             cell.style.color = "black";
+
+            
         });
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+            Gameboard[i][j] = null;
+            }
+        }
     }
 
 

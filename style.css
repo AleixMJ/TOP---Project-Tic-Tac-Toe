@@ -93,7 +93,7 @@ h1 {
 }
 
 
-.turn-message {
+.status-message, .winner-container {
   font-size: 1.5rem;
   font-weight: 600;
   text-align: center;
@@ -104,4 +104,12 @@ h1 {
   font-size: 2.1rem;   
   font-weight: 800;
   margin: 0 0.15em;
+}
+
+.winner-message {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
 }
